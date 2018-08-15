@@ -1,0 +1,10 @@
+version: '0.1'
+services:
+  web:
+    build: .
+    ports:
+      - '13000:3000'
+    volumes:
+      - .:/code
+  mongo:
+    image: 'mongo:latest'
