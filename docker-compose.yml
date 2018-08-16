@@ -10,6 +10,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: root
 
   mongo-express:
+    depends_on:
+      - mongo
     image: mongo-express
     restart: always
     ports:
@@ -21,7 +23,7 @@ services:
   web:
     depends_on:
       - mongo
-    image: node
+    build: .
     restart: always
     ports:
       - '13000:3000'
