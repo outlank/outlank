@@ -26,9 +26,8 @@ services:
       - mongo
     build: .
     restart: always
-    command: nodemon --inspect=0.0.0.0:5858
+    command: npm run dev
     ports:
       - '13100:3000'
-      - '13103:5858'
     volumes:
       - .:/code

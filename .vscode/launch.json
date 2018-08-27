@@ -3,6 +3,19 @@
   "configurations": [
     {
       "type": "node",
+      "request": "launch",
+      "name": "Debug current file",
+      "program": "${file}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug current file (es6)",
+      "preLaunchTask": "Compile current file using babel",
+      "program": "${workspaceFolder}/.compiled/temp/single-file-debug.js"
+    },
+    {
+      "type": "node",
       "request": "attach",
       "name": "Attach Docker Daemon",
       "address": "localhost",
