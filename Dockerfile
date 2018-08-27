@@ -1,8 +1,10 @@
 FROM node
 WORKDIR /code
-COPY package.json /code/package.json
-RUN npm install && npm ls
-# RUN mv /code/node_modules /node_modules
-COPY . /code
+COPY package*.json /code/
+
+RUN npm install -g nodemon
+RUN npm install
+
+COPY . /code/
 ENV DEBUG=outlank:*
 CMD ["npm", "start"]
