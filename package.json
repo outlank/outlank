@@ -3,28 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "babel-node": "babel-node --preset=latest",
-    "compile": "babel . --out-dir .compiled --ignore node_modules/* --source-maps --watch",
-    "dev": "nodemon --exec npm run babel-node -- ./bin/www"
-  },
-  "babel": {
-    "presets": [
-      "latest"
-    ]
+    "babel-node": "./node_modules/.bin/babel-node",
+    "compile": "./node_modules/.bin/babel . --out-dir .compiled --ignore node_modules/* --source-maps --watch",
+    "dev": "nodemon --exec npm run babel-node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
-    "mongoose": "^5.2.9",
+    "mongoose": "^5.2.10",
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
     "xlsx": "^0.13.5"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-latest": "^6.24.1",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "eslint": "^5.4.0",
     "eslint-config-prettier": "^3.0.1",
     "eslint-config-standard": "^11.0.0",
