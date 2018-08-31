@@ -1,0 +1,16 @@
+.product-page {
+  height: 100vh;
+  .product-card {
+    margin: 8px;
+    padding: 8px;
+    .product-img {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .product-info {
+      flex: 2
+    }
+  }
+}

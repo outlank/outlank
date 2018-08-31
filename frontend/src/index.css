@@ -1,0 +1,13 @@
+@import url(./font/iconfont/iconfont.css);
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft YaHei",sans-serif; }
+
+.am-tab-bar {
+  position: sticky;
+  bottom: 0; }
+  .am-tab-bar i {
+    font-size: 150%; }
+
+/*# sourceMappingURL=index.css.map */

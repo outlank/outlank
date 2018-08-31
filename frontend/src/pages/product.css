@@ -1,0 +1,12 @@
+.product-page {
+  height: 100vh; }
+  .product-page .product-card {
+    margin: 8px;
+    padding: 8px; }
+    .product-page .product-card .product-img img {
+      width: 100%;
+      height: auto; }
+    .product-page .product-card .product-info {
+      flex: 2; }
+
+/*# sourceMappingURL=product.css.map */

@@ -1,0 +1,42 @@
+.product-list {
+  height: 100vh;
+  .am-list-body {
+    background-color: transparent;
+    &:before {
+      background-color: transparent !important;
+    }
+  }
+  .am-card {
+    &:before {
+      border: none !important;
+    }
+    border: none;
+    &-body {
+      &:before {
+        height: 0 !important;
+      }
+      border: none;
+      .img {
+        margin: -15px -15px 0;
+        img {
+          border-radius: 5px 5px 0 0;
+          width: 100%;
+        }
+      }
+      .name {
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .describe {
+        font-size: 90%;
+        flood-color: #222222;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    .am-card-footer {
+      font-size: 70%;
+    }
+  }
+}
