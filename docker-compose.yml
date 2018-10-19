@@ -1,33 +1,81 @@
 version: '3'
 
 services:
-  mongo:
-    image: mongo
+  mysql:
+    image: mysql:8.0.3
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+      TZ: Asia/Shanghai
     ports:
-      - 13102:27017
+      - 8805:3306
+    volumes:
+      - ./conf/mysql:/etc/mysql/conf.d
+      - /home/data/docker/reporter/mysql:/var/lib/mysql
 
-  mongo-express:
-    depends_on:
-      - mongo
-    image: mongo-express
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - 13101:8081
+      - 8806:80
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: mysql
 
-  web:
+  # mongo:
+  #   image: mongo:latest
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: root
+  #   ports:
+  #     - 9807:27017
+  #   volumes:
+  #     - ./conf/mongo:/etc/mongo
+  #     # - /home/data/docker/test1/mongo:/data/db
+  #   command:
+  #     - "--auth"
+  #     - "-f"
+  #     - "/etc/mongo/mongod.conf"
+
+  # mongo-express:
+  #   depends_on:
+  #     - mongo
+  #   image: mongo-express
+  #   restart: always
+  #   ports:
+  #     - 9808:8081
+  #   environment:
+  #     ME_CONFIG_BASICAUTH_USERNAME: root # mongo express 网站用户
+  #     ME_CONFIG_BASICAUTH_PASSWORD: root # mongo express 网站密码
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: root
+
+  # redis:
+  #   image: redis:4.0-alpine
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - 8800:80
+      - 8801:8080
+    volumes:
+      - ./frontend/dist:/code/static/frontend #前端静态文件
+      - ./backend/static:/code/static/backend # 后端静态文件
+      - ./conf/nginx:/etc/nginx/conf.d
+      - ./log/nginx:/var/log/nginx
+
+  app:
     depends_on:
-      - mongo
+      # - mongo
+      - mysql
     build: .
-    restart: always
-    command: npm run dev
-    ports:
-      - '13100:3000'
+    command: bash -c "chmod +x entrypoint.sh && ./entrypoint.sh"
     volumes:
       - .:/code
+      - ./log/gunicorn:/var/log/gunicorn
+    ports:
+      - 8802:8000

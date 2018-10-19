@@ -1,10 +1,8 @@
-FROM node
+FROM python
 WORKDIR /code
-COPY package*.json /code/
-
-RUN npm install -g nodemon
-RUN npm install
-
-COPY . /code/
-ENV DEBUG=outlank:*
-CMD ["npm", "start"]
+COPY . /code
+RUN pip install -r requirements.txt
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN dpkg-reconfigure -f nointeractive tzdata
+RUN ["chmod", "+x", "entrypoint.sh"]

@@ -1,3 +1,7 @@
 {
-  "debug.node.autoAttach": "off"
+  "git.ignoreLimitWarning": true,
+  "python.pythonPath": "C:\\Users\\caiqian\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+  "eslint.options": {
+    "configFile": "./frontend/.eslintrc.js"
+  }
 }

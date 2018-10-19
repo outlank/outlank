@@ -1,0 +1,10 @@
+Django==2.1
+mysqlclient
+django-environ
+gunicorn
+djangorestframework
+pyjwt
+django-cors-headers
+requests
+django-ckeditor
+graphene
