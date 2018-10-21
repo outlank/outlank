@@ -36,17 +36,20 @@ class Sku(models.Model):
     manager_price = models.FloatField(verbose_name='店长拿货价')
     retail_price = models.FloatField(verbose_name='零售价')
 
+    # 利润部分
     profit = models.FloatField(verbose_name='公司毛利')
     profit_percent = models.FloatField(verbose_name='公司毛利率')
 
     parterner_sell_profit = models.FloatField(verbose_name='合伙人销售毛利')
     parterner_sell_profit_percent = models.FloatField(verbose_name='合伙人销售毛利率')
 
-    parterner_commission_profit = models.FloatField(verbose_name='合伙人销售毛利')
+    parterner_commission_profit = models.FloatField(verbose_name='合伙人提成毛利')
     parterner_commission_profit_percent = models.FloatField(
-        verbose_name='合伙人销售毛利率')
+        verbose_name='合伙人提成毛利率')
 
-    manager_profit = models.FloatField(verbose_name='店长销售毛利')
-    manager_profit_percent = models.FloatField(verbose_name='店长销售毛利率')
+    manager_sell_profit = models.FloatField(verbose_name='店长销售毛利')
+    manager_sell_profit_percent = models.FloatField(verbose_name='店长销售毛利率')
+
+    # 提成部分
 
     spu = models.ForeignKey('Spu', on_delete=models.PROTECT)
